@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest-Home Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Rest-Home Reservation</h1>
+        <form id="reservationForm" method="POST" action="/reserve">
+            <div class="mb-3">
+                <label for="reservationName" class="form-label">Name of Reservation</label>
+                <input type="text" class="form-control" id="reservationName" name="name" required>
+            </div>
+            <div class="mb-3">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
+              </div>
+            <div class="mb-3">
+                <label for="childrenUnder5" class="form-label">Number of Children Under 5 Years</label>
+                <input type="number" class="form-control" id="childrenUnder5" value="0" min="0">
+            </div>
+            <div class="mb-3">
+                <label for="serviceType" class="form-label">Type of Service</label>
+                <select class="form-select" id="serviceType" name="serviceType" required>
+                    <option value="">Select Service</option>
+                    <option value="period">Period Stay</option>
+                    <option value="dayuse">Day Use</option>
+                </select>
+            </div>
+            <div id="dayUseDetails" class="d-none">
+                <div class="mb-3">
+                    <label for="numMeals" class="form-label">Number of Meals (if Day Use)</label>
+                    <input type="number" class="form-control" name="numMeals" id="numMeals" min="0">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="yes" id="usePool">
+                    <label class="form-check-label" for="usePool">
+                        Use Pool (if Day Use)
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label for="numRoomsDayUse" class="form-label">Number of Rooms (if Day Use)</label>
+                    <input type="number" class="form-control" id="numRoomsDayUse" min="0">
+                </div>
+            </div>
+            <div id="periodDetails" class="d-none">
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Start Date (if Period Stay)</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">End Date (if Period Stay)</label>
+                    <input type="date" class="form-control" id="endDate">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select class="form-select" id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Select Method</option>
+                    <option value="creditcard">Credit Card</option>
+                    <option value="debitcard">Debit Card</option>
+                    <option value="cash">Cash</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="paidAmount" class="form-label">Paid Amount</label>
+                <input type="number" step="1" class="form-control" name="paidAmount" id="paidAmount" value="0" min="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Reservation</button>
+        </form>
+    </div>
+    <script>
+        let service = document.getElementById("serviceType");
+        console.log(service.value)
+        if (service.value == 'dayuse'){
+            document.getElementById("dayUseDetails").removeAttribute("hidden");
+            console.log('ok')
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
